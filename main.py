@@ -1,28 +1,41 @@
 import tkinter as tk
+from tkinter import ttk
+from tkcalendar import DateEntry
+
+
+lista_moedas = ['USD', 'EUR', 'JPY', 'GBP']
+
+
+def pegar_cotacao():
+    pass
 
 
 janela = tk.Tk()
 
-janela.title("Automação")
-janela.rowconfigure(0, minsize=30, weight=1)
-janela.columnconfigure([0, 1], minsize=30, weight=1)
+janela.title("Cotação de Moedas")
 
-mensagem = tk.Label(text="Sistema de automação", fg="white", bg="#7E40C8", width=35, height=1, font=("Arial", 10))
-mensagem.grid(row=0, column=0, columnspan=2, sticky='NSEW')
+label_cotacao = tk.Label(text="Cotação de 1 moeda especifica", borderwidth=2, relief="solid")
+label_cotacao.grid(row=0, column=0, padx=10, pady=10, sticky="nswe", columnspan=3)
 
-mensagem2 = tk.Label(text="Digite seu nome", foreground="white", background="blue", width=20, height=1,
-                     font=("Arial", 10))
-mensagem2.grid(row=1, column=0)
+label_selecionarmoeda = tk.Label(text="Selecionar moeda")
+label_selecionarmoeda.grid(row=1, column=0, padx=10, pady=10, sticky="nswe", columnspan=2)
 
-nome = tk.Entry()
-nome.grid(row=1, column=1)
+combobox_selecionarmoeda = ttk.Combobox(values=lista_moedas)
+combobox_selecionarmoeda.grid(row=1, column=2, padx=10, pady=10, sticky="nswe")
 
+label_cotacaovarias = tk.Label(text="Selecione o dia que deseje pegar a cotação")
+label_cotacaovarias.grid(row=2, column=0, padx=10, pady=10, sticky="nswe", columnspan=2)
 
-def buscar_nome():
-    print(nome.get())
+calendario_moeda = DateEntry(year=2025, locale='pt_BR')
+calendario_moeda.grid(row=2, column=2, padx=10, pady=10, sticky="nswe")
 
+label_textocotacao = tk.Label(text="")
+label_textocotacao.grid(row=3, column=0, padx=10, pady=10, sticky="nswe", columnspan=2)
 
-botao = tk.Button(text="Enviar", command=buscar_nome, width=10)
-botao.grid(row=2, column=0, columnspan=2)
+botao_pegarcotacao = tk.Button(text="Pegar Cotação", command=pegar_cotacao)
+botao_pegarcotacao.grid(row=3, column=2, padx=10, pady=10, sticky="nswe")
+
+label_cotacaovarias = tk.Label(text="Cotação de multiplas moedas", borderwidth=2, relief="solid")
+label_cotacaovarias.grid(row=4, column=0, padx=10, pady=10, sticky="nswe", columnspan=3)
 
 janela.mainloop()
